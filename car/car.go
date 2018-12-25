@@ -209,6 +209,7 @@ func (c *CAR) miss(key interface{}) interface{} {
 }
 
 // Load returns the cache value of the given cache key.
+// Load is safe for concurrent use by multiple goroutines without additional locking or coordination.
 func (c *CAR) Load(key interface{}) interface{} {
 
 	// cache hit
