@@ -7,8 +7,8 @@ Golang CAR cache is a cache implementation using the cache replacement policy:
 
 * Clock with adaptive replacement (CAR)
 
-See [https://www.cse.iitd.ernet.in/~sbansal/pubs/fast04.pdf]() for motivation, definition
+See [https://www.cse.iitd.ernet.in/~sbansal/pubs/fast04.pdf](https://www.cse.iitd.ernet.in/~sbansal/pubs/fast04.pdf) for motivation, definition
 and contribution to all aspects of this implementation.
 
-See [https://en.wikipedia.org/wiki/Cache_replacement_policies]() for a general discussion
+See [https://en.wikipedia.org/wiki/Cache_replacement_policies](https://en.wikipedia.org/wiki/Cache_replacement_policies) for a general discussion
 of cache replacement policies.
