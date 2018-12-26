@@ -35,7 +35,7 @@ func loadValue(key interface{}, slotNo int) interface{} {
 	return text[key.(int)]
 }
 
-func replaceValue(key interface{}, slotNo int) {
+func replaceValue(key, value interface{}, slotNo int) {
 	fmt.Printf("Key %d SlotNo %d\n", key, slotNo)
 }
 

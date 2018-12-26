@@ -64,7 +64,7 @@ func (s *slot) setRef(v int32) {
 type LoadValue func(key interface{}, slotNo int) interface{}
 
 // ReplaceValue is the type of a callback function to notify cache replacements.
-type ReplaceValue func(key interface{}, slotNo int)
+type ReplaceValue func(key, value interface{}, slotNo int)
 
 // A CAR is a cache with cache replacement policy:
 // Clock with adaptive replacement (CAR).
@@ -109,7 +109,7 @@ func (c *CAR) replaceT1() *slot {
 		if s.getRef() == refZero {
 			c.b1.insertHead(key)
 			if c.cbReplaceValue != nil { // replace value (callback)
-				c.cbReplaceValue(key, s.slotNo)
+				c.cbReplaceValue(key, s.value, s.slotNo)
 			}
 			return s
 		}
@@ -125,7 +125,7 @@ func (c *CAR) replaceT2() *slot {
 			c.t2.removeHead()
 			c.b2.insertHead(key)
 			if c.cbReplaceValue != nil { // replace value (callback)
-				c.cbReplaceValue(key, s.slotNo)
+				c.cbReplaceValue(key, s.value, s.slotNo)
 			}
 			return s
 		}
