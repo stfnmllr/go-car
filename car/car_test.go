@@ -20,6 +20,7 @@ package car
 
 import (
 	"testing"
+	//	"container/list"
 )
 
 func checkInvariants(car *CAR, t *testing.T) {
@@ -71,14 +72,36 @@ func checkInvariants(car *CAR, t *testing.T) {
 }
 
 func checkClock(clock *clock, t *testing.T) {
+	// check equal size of ring and map
+	if clock.head.Len() != len(clock.slots) {
+		t.Fatalf("invalid clock: len(ring) = %d - len(map) = %d", clock.head.Len(), len(clock.slots))
+	}
+
+	// check equality of keys in ring and map
+	e := clock.head
+	for i := 0; i < clock.head.Len(); i++ {
+		if _, ok := clock.slots[e.Value]; !ok {
+			t.Fatalf("invalid clock: ring key %v not found in sloty", e.Value)
+		}
+		e = e.Next()
+	}
 
 }
 
 func checkLru(lru *lru, t *testing.T) {
+	// check equal size of list and map
 	if lru.l.Len() != len(lru.keys) {
 		t.Fatalf("invalid lru: len(liste) = %d - len(map) = %d", lru.l.Len(), len(lru.keys))
 	}
 
+	// check equality of keys in list and map
+	e := lru.l.Front()
+	for i := 0; i < lru.l.Len(); i++ {
+		if _, ok := lru.keys[e.Value]; !ok {
+			t.Fatalf("invalid lru: list key %v not found in keys", e.Value)
+		}
+		e = e.Next()
+	}
 }
 
 func check(car *CAR, t *testing.T) {
